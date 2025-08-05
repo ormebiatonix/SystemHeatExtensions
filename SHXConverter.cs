@@ -24,7 +24,14 @@ namespace SystemHeatExtensions
         public override void FixedUpdate()
         {
             base.FixedUpdate();
-            systemPower = heatingRate.Evaluate(heatModule.currentLoopTemperature);
+            if (base.ModuleIsActive())
+            {
+                systemPower = heatingRate.Evaluate(heatModule.currentLoopTemperature);
+            }
+            else
+            {
+                systemPower = 0;
+            }
         }
 
         // Overridden to create waste heat on discarded resources
